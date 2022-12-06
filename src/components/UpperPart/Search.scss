@@ -1,0 +1,36 @@
+@import "../variables";
+
+.search-field {
+  display: flex;
+  width: 39%;
+  margin: auto;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &__input {
+    width: 89%;
+    border: 0;
+    outline: none;
+    padding: .92rem 1.5rem;
+    font-size: 1.1rem;
+    
+    &::placeholder {
+      color: rgb(80, 80, 80);
+    }
+  }
+
+  &__btn {
+    width: 11%;
+    background-color: black;
+    border: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.1s;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: $clr-dark-grey;
+    }
+  }
+}

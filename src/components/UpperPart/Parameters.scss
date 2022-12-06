@@ -1,3 +1,50 @@
+@import "../variables";
+
 .parameters {
-  display: flex;
+  width: 75%;
+  height: 9.72rem;
+  background-color: white;
+  box-shadow: 0px 1px 5px rgb(227, 227, 227);
+  border-radius: 1rem;
+  margin: auto;
+  padding-top: 2.1rem;
+  position: absolute;
+  top: calc(100% - 4.9rem);
+  left: 50%;
+  transform: translateX(-50%);
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+
+
+    li {
+      text-align: start;
+      width: 20%;
+      padding-left: 2.25rem;
+      margin-right: 5rem;
+    }
+
+    li + li {
+      border-left: 1px solid rgb(188, 188, 188);
+    }
+
+    h3 {
+      font-size: .75rem;
+      font-weight: $fnt-bold;
+      letter-spacing: .1rem;
+      color: $clr-dark-grey;
+      margin-bottom: 0.6rem;
+    }
+  
+    p {
+      font-size: 1.6rem;
+      font-weight: $fnt-regular;
+      color: $clr-very-dark-grey;
+      line-height: 1.75rem;
+    }
+  }
+
+  
 }

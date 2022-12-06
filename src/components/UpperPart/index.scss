@@ -1,9 +1,17 @@
+@import "../variables";
+
 .upper-part {
   background-image: url("../../assets/pattern-bg.png");
+  background-size: cover;
   text-align: center;
+  padding-bottom: 7.7rem;
+  position: relative;
+
 
   h1 {
     color: white;
-    font-weight: 400;
+    font-size: 1.9rem;
+    font-weight: $fnt-regular;
+    padding: 1.4rem 0;
   }
 }

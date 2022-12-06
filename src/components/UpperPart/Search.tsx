@@ -1,4 +1,4 @@
-import React from "react";
+import "./Search.scss"
 
 const Search = () => {
   return (
@@ -6,7 +6,7 @@ const Search = () => {
       <input className="search-field__input" type="text" placeholder="Search for any IP address or domain" />
       <button className="search-field__btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
-          <path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6" />
+          <path fill="none" stroke="#FFF" strokeWidth="3" d="M2 1l6 6-6 6" />
         </svg>
       </button>
     </div>
