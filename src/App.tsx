@@ -1,14 +1,16 @@
-import { useState } from "react";
+import WorldMap from "./components/WorldMap";
+import UpperPart from "./components/UpperPart";
 import "./App.scss";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
-      <h1></h1>
-    </div>
+    <main className="App">
+      <UpperPart />
+      <WorldMap />
+    </main>
   );
+  
 }
 
 export default App;
