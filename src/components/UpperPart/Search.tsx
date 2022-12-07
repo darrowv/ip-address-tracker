@@ -1,10 +1,18 @@
+import { useState } from "react";
 import "./Search.scss"
 
-const Search = () => {
+// @ts-ignore
+const Search = ({ getLocationOne }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const setLocation = (searchValue: String) => {
+    getLocationOne(searchValue)
+  }
+
   return (
     <div className="search-field">
-      <input className="search-field__input" type="text" placeholder="Search for any IP address or domain" />
-      <button className="search-field__btn">
+      <input onChange={(e) => setSearchValue(e.target.value)} value={searchValue} className="search-field__input" type="text" placeholder="Search for any IP address or domain" />
+      <button onClick={() => setLocation(searchValue)} className="search-field__btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
           <path fill="none" stroke="#FFF" strokeWidth="3" d="M2 1l6 6-6 6" />
         </svg>

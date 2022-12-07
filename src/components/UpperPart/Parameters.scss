@@ -2,15 +2,15 @@
 
 .parameters {
   width: 75%;
-  height: 9.72rem;
   background-color: white;
   box-shadow: 0px 1px 5px rgb(227, 227, 227);
   border-radius: 1rem;
   margin: auto;
-  padding-top: 2.1rem;
+  padding: 1rem 2rem 2rem 1rem;
   position: absolute;
   top: calc(100% - 4.9rem);
   left: 50%;
+  z-index: 99999;
   transform: translateX(-50%);
 
   ul {
@@ -18,16 +18,21 @@
     display: flex;
     padding: 0;
 
-
-    li {
-      text-align: start;
-      width: 20%;
-      padding-left: 2.25rem;
-      margin-right: 5rem;
+    hr {
+      height: 4.5rem;
+      width: 1px;
+      border: none;
+      align-self: center;
+      background-color: rgb(177, 177, 177);
+      margin-top: 1rem;
     }
 
-    li + li {
-      border-left: 1px solid rgb(188, 188, 188);
+    li {
+      width: 30%;
+      text-align: start;
+      word-break: break-word;
+      padding: 1rem 2rem;
+      padding-bottom: .3rem;
     }
 
     h3 {
@@ -35,7 +40,7 @@
       font-weight: $fnt-bold;
       letter-spacing: .1rem;
       color: $clr-dark-grey;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.7rem;
     }
   
     p {
