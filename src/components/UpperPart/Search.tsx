@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getGeolocation } from "../../redux/geo.slice";
 import "./Search.scss"
 
 // @ts-ignore
-const Search = ({ getLocationOne }) => {
+const Search = () => {
   const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
 
-  const setLocation = (searchValue: String) => {
-    getLocationOne(searchValue)
+  const setLocation = (address: String) => {
+    // @ts-ignore
+    dispatch(getGeolocation(address))
   }
 
   return (

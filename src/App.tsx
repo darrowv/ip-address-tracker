@@ -1,23 +1,24 @@
 import WorldMap from "./components/WorldMap";
 import UpperPart from "./components/UpperPart";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getInitialGeolocation } from "./redux/geo.slice";
 import "./App.scss";
-import { useState } from "react";
 
 function App() {
-  const [location, setLocation] = useState("")
+  const dispatch = useDispatch();
 
-  const getLocationTwo = (location: String) => {
+  useEffect(() => {
     // @ts-ignore
-    setLocation(location)
-  }
+    dispatch(getInitialGeolocation())
+  }, [])
 
   return (
     <main className="App">
-      <UpperPart getLocationTwo={getLocationTwo} />
-      <WorldMap searchValue={location} />
+      <UpperPart />
+      <WorldMap />
     </main>
   );
-  
 }
 
 export default App;

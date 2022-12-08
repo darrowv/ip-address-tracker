@@ -1,3 +1,13 @@
 #map {
-  height: 60vh;
+  height: 100vh;
+}
+
+.map-loading {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+
+  img {
+    width: 20%;
+  }
 }

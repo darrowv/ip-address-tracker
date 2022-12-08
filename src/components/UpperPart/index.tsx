@@ -1,18 +1,14 @@
 import Parameters from './Parameters';
 import Search from './Search';
-import "./index.scss"
+import "./index.scss";
 
 // @ts-ignore
-const UpperPart = ({ getLocationTwo }) => {
-
-  const getLocationOne = (location: String) => {
-    getLocationTwo(location);
-  }
+const UpperPart = () => {
 
   return (
     <section className='upper-part'>
       <h1>IP Address Tracker</h1>
-      <Search getLocationOne={getLocationOne} />
+      <Search />
       <Parameters />
     </section>
   );
