@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent, useMapEvents } from "react-leaflet";
+import { useRef, useState, useMemo, useEffect } from "react";
+import { MapContainer, Marker, TileLayer, useMap } from "react-leaflet";
 import { useSelector } from "react-redux";
 import gif from "../../assets/loading.gif";
 import "./WorldMap.scss";
 
 
 // @ts-ignore
-function Test({ location }) {
+function CustomMarker({ location }) {
   const map = useMap();
   if (location) map.flyTo(location, 12);
 
   return location ? (
     <Marker
-      draggable
       position={location}
     >
     </Marker>
@@ -23,28 +22,22 @@ function Test({ location }) {
 // @ts-ignore
 const WorldMap = () => {
   // @ts-ignore
-  const { lat, lng } = useSelector((state) => state.geo);
-
-  // const map = useMap();
-
-  // useEffect(() => {
-  //   map.flyTo({ lat, lng })
-  // }, [lat])
+  const { lat, lon } = useSelector((state) => state.geo);
 
   return (
     <>
       {lat ? (
         <MapContainer
           id="map"
-          center={[lat, lng]}
-          zoom={13}
+          center={[lat, lon]}
+          zoom={10}
           scrollWheelZoom={false}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Test location={[lat, lng]} />
+          <CustomMarker location={[lat, lon]} />
         </MapContainer>
       ) : (
         <div className="map-loading"><img src={gif} alt="" /></div>

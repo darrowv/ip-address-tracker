@@ -44,6 +44,8 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Media queries
+- API
+- Intersection observer
 
 ### What I learned
 
@@ -51,8 +53,11 @@ Users should be able to:
 
 ### Useful resources
 
-- [********\*\*\*\*********](*********************************************)
-- [********\*\*\*\*********](*********************************************)
+- [Leaflet - js library with interactive maps](https://leafletjs.com/)
+- [Using Leaflet with React](https://react-leaflet.js.org/)
+- [IP geolocation API](https://ip-api.com/)
+- [How to move view in Leaflet maps](https://codesandbox.io/s/uemdn?file=/src/App.js)
+- [Intersection observer](https://www.youtube.com/watch?v=wkztoWlwTXU)
 
 ## Author
 
@@ -60,3 +65,5 @@ Users should be able to:
 - Frontend Mentor - [@darrowv](https://www.frontendmentor.io/profile/darrowv)
 - LinkedIn - [Nasyr Akhmadov](https://linkedin.com/in/darrowv)
 - Telegram - [Muhammad Nasyr](https://t.me/m_nasyr)
+
+### Powered by [ip-api](https://ip-api.com/)
