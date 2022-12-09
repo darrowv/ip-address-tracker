@@ -12,6 +12,10 @@
   left: 50%;
   z-index: 99999;
   transform: translateX(-50%);
+  
+  h1 {
+    color: $clr-very-dark-grey !important;
+  }
 
   .fullscreen {
     display: flex;

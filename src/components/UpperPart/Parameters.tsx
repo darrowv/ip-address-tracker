@@ -5,16 +5,18 @@ import fullscreen_icon from "../../assets/fullscreen-icon.png";
 import "./Parameters.scss";
 
 const Parameters = () => {
-  const { region, city, timezone, ip, isp } = useSelector((state: RootState) => state.geo);
-  const [hideSection, setHideSection] = useState(false)
+  const { region, city, timezone, ip, isp, error } = useSelector(
+    (state: RootState) => state.geo
+  );
+  const [hideSection, setHideSection] = useState(false);
   const targetRef = useRef<HTMLDivElement>(null);
 
   const callBack = (entries: any) => {
     if (entries[0].isIntersecting) {
       if (entries[0].intersectionRatio <= 0.75) {
-        setHideSection(true)
+        setHideSection(true);
       } else if (entries[0].intersectionRatio >= 0.75) {
-        setHideSection(false)
+        setHideSection(false);
       }
     }
   };
@@ -41,32 +43,41 @@ const Parameters = () => {
   const sub = (str: String) => str.substring(0, 20) + "...";
 
   return (
-    <section className={`parameters ${hideSection ? "hidden" : null}`} ref={targetRef}>
-      <ul>
-        <li>
-          <h3>IP ADDRESS</h3>
-          <p>{!ip ? "..." : ip}</p>
-        </li>
-        <hr />
-        <li>
-          <h3>LOCATION</h3>
-          <p>{!region ? "..." : `${region}, ${city}`}</p>
-        </li>
-        <hr />
-        <li>
-          <h3>TIMEZONE</h3>
-          <p>{!timezone ? "..." : timezone}</p>
-        </li>
-        <hr />
-        <li>
-          <h3>ISP</h3>
-          <p>{!isp ? "..." : isp.length > 20 ? sub(isp) : isp}</p>
-        </li>
-      </ul>
-      <div className="fullscreen">
-        <span>⬇️</span>
-        <img src={fullscreen_icon} alt="" />
-      </div>
+    <section
+      className={`parameters ${hideSection ? "hidden" : null}`}
+      ref={targetRef}
+    >
+      {error ? (
+        <h1>Incorrect data or problem with API, try again with correct IP address or Domain name</h1>
+      ) : (
+        <>
+          <ul>
+            <li>
+              <h3>IP ADDRESS</h3>
+              <p>{!ip ? "..." : ip}</p>
+            </li>
+            <hr />
+            <li>
+              <h3>LOCATION</h3>
+              <p>{!region ? "..." : `${region}, ${city}`}</p>
+            </li>
+            <hr />
+            <li>
+              <h3>TIMEZONE</h3>
+              <p>{!timezone ? "..." : timezone}</p>
+            </li>
+            <hr />
+            <li>
+              <h3>ISP</h3>
+              <p>{!isp ? "..." : isp.length > 20 ? sub(isp) : isp}</p>
+            </li>
+          </ul>
+          <div className="fullscreen">
+            <span>⬇️</span>
+            <img src={fullscreen_icon} alt="" />
+          </div>
+        </>
+      )}
     </section>
   );
 };
