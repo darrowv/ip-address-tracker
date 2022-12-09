@@ -1,24 +1,20 @@
 import { useRef, useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import fullscreen_icon from "../../assets/fullscreen-icon.png";
 import "./Parameters.scss";
 
 const Parameters = () => {
-  // @ts-ignore
-  const { region, city, timezone, ip, isp } = useSelector((state) => state.geo);
-  const targetRef = useRef(null);
-  // const [isVisible, setIsVisible] = useState(false);
-  // @ts-ignore
+  const { region, city, timezone, ip, isp } = useSelector((state: RootState) => state.geo);
+  const [hideSection, setHideSection] = useState(false)
+  const targetRef = useRef<HTMLDivElement>(null);
 
-  const callBack = (entries) => {
+  const callBack = (entries: any) => {
     if (entries[0].isIntersecting) {
       if (entries[0].intersectionRatio <= 0.75) {
-        targetRef.current.classList.add("hidden");
-        console.log("disappear");
-        // console.log("now")
+        setHideSection(true)
       } else if (entries[0].intersectionRatio >= 0.75) {
-        targetRef.current.classList.remove("hidden");
-        console.log("appear");
+        setHideSection(false)
       }
     }
   };
@@ -45,7 +41,7 @@ const Parameters = () => {
   const sub = (str: String) => str.substring(0, 20) + "...";
 
   return (
-    <section className="parameters" ref={targetRef}>
+    <section className={`parameters ${hideSection ? "hidden" : null}`} ref={targetRef}>
       <ul>
         <li>
           <h3>IP ADDRESS</h3>

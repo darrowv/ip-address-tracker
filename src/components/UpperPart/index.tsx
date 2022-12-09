@@ -2,7 +2,6 @@ import Parameters from './Parameters';
 import Search from './Search';
 import "./index.scss";
 
-// @ts-ignore
 const UpperPart = () => {
 
   return (
