@@ -7,6 +7,10 @@
   padding-bottom: 7.7rem;
   position: relative;
 
+  @media (max-width: 600px) {
+    padding-bottom: 6rem;
+  }
+
 
   h1 {
     color: white;

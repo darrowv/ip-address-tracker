@@ -7,6 +7,7 @@
   border-radius: 1rem;
   overflow: hidden;
 
+
   &__input {
     width: 89%;
     border: 0;
@@ -31,6 +32,26 @@
     
     &:hover {
       background-color: $clr-dark-grey;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    width: 55%;
+  }
+
+  @media (max-width: 600px) {
+    width: 90%;
+
+    &__input {
+      width: 85%;
+
+      &::placeholder {
+        font-size: 1rem;
+      }
+    }
+
+    &__btn {
+      width: 15%;
     }
   }
 }

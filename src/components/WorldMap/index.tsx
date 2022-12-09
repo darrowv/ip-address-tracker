@@ -23,11 +23,11 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ location }) => {
 }
 
 const WorldMap = () => {
-  const { lat, lon } = useSelector((state: RootState) => state.geo);
+  const { lat, lon, loading } = useSelector((state: RootState) => state.geo);
 
   return (
     <>
-      {lat ? (
+      {!loading ? (
         <MapContainer
           id="map"
           center={[lat as number, lon as number]}

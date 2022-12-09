@@ -20,7 +20,7 @@ type FetchedData = {
   regionName: String;
   city: String;
   timezone: String;
-  status?: String
+  status?: String;
 };
 
 const initialState: GeoSliceState = {
@@ -38,12 +38,17 @@ const initialState: GeoSliceState = {
 export const getGeolocation = createAsyncThunk<FetchedData, String>(
   "geo/get",
   async (address) => {
-    const res = await fetch(
-      `http://ip-api.com/json/${address}?fields=status,message,regionName,city,lat,lon,timezone,isp,query`
-    );
-    const data = await res.json();
+    try {
+      const res = await fetch(
+        `http://ip-api.com/json/${address}?fields=status,message,regionName,city,lat,lon,timezone,isp,query`
+      );
+      const data = await res.json();
 
-    return data;
+      return data;
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
@@ -55,8 +60,9 @@ export const getInitialGeolocation = createAsyncThunk(
       const data = await res.json();
 
       return data;
-    } catch (error: any) {
-      console.log(error.message);
+
+    } catch (error) {
+      console.log(error);
     }
   }
 );
@@ -85,14 +91,23 @@ export const geoSlice = createSlice({
           state.isp = action.payload?.isp;
         }
       })
+      .addCase(getInitialGeolocation.pending, (state, action) => {
+        state.loading = true;
+      })
       .addCase(getInitialGeolocation.fulfilled, (state, action) => {
-        state.lat = action.payload?.lat;
-        state.lon = action.payload?.lon;
-        state.region = action.payload?.regionName;
-        state.city = action.payload?.city;
-        state.timezone = action.payload?.timezone;
-        state.ip = action.payload?.query;
-        state.isp = action.payload?.isp;
+        if (action.payload.status === "fail") {
+          state.error = true;
+        } else {
+          state.loading = false;
+          state.error = false;
+          state.lat = action.payload?.lat;
+          state.lon = action.payload?.lon;
+          state.region = action.payload?.regionName;
+          state.city = action.payload?.city;
+          state.timezone = action.payload?.timezone;
+          state.ip = action.payload?.query;
+          state.isp = action.payload?.isp;
+        }
       });
   },
 });

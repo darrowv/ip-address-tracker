@@ -39,6 +39,8 @@ Users should be able to:
 
 - Vite
 - TypeScript
+- Redux Toolkit
+- Fetch Api
 - Semantic HTML5 markup
 - Sass/scss
 - Flexbox
@@ -49,7 +51,8 @@ Users should be able to:
 
 ### What I learned
 
-- ***
+- Learned using maps and geolocation API
+- Refreshed my overall knowledges
 
 ### Useful resources
 
