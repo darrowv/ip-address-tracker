@@ -51,7 +51,7 @@ Users should be able to:
 
 ### What I learned
 
-- Learned using maps and geolocation API
+- Using maps and geolocation API
 - Refreshed my overall knowledges
 
 ### Useful resources
