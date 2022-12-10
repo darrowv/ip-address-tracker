@@ -40,7 +40,7 @@ export const getGeolocation = createAsyncThunk<FetchedData, String>(
   async (address) => {
     try {
       const res = await fetch(
-        `https://ip-api.com/json/${address}?fields=status,message,regionName,city,lat,lon,timezone,isp,query`
+        `//ip-api.com/json/${address}?fields=status,message,regionName,city,lat,lon,timezone,isp,query`
       );
       const data = await res.json();
 
@@ -56,7 +56,7 @@ export const getInitialGeolocation = createAsyncThunk(
   "geo/getInitial",
   async () => {
     try {
-      const res = await fetch("https://ip-api.com/json");
+      const res = await fetch("//ip-api.com/json");
       const data = await res.json();
 
       return data;
