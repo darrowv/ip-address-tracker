@@ -48,7 +48,7 @@ const Parameters = () => {
       ref={targetRef}
     >
       {error ? (
-        <h1>Incorrect data or problem with API, try again with correct IP address or Domain name</h1>
+        <h1>Incorrect data or problem with API, try again with correct IP address</h1>
       ) : (
         <>
           <ul>

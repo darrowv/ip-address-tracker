@@ -21,7 +21,7 @@ const Search = () => {
           value={searchValue}
           className="search-field__input"
           type="text"
-          placeholder="Search for any IP address or domain"
+          placeholder="Search for any IP address"
         />
         <button
           onClick={(e) => setLocation(e, searchValue)}
