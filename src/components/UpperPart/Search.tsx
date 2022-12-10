@@ -10,7 +10,9 @@ const Search = () => {
 
   const setLocation = (e: any, address: String) => {
     e.preventDefault();
-    dispatch(getGeolocation(address));
+    if(address) {
+      dispatch(getGeolocation(address));
+    }
   };
 
   return (
