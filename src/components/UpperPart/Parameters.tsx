@@ -5,7 +5,7 @@ import fullscreen_icon from "../../assets/fullscreen-icon.png";
 import "./Parameters.scss";
 
 const Parameters = () => {
-  const { region, city, timezone, ip, isp, error, loading } = useSelector(
+  const { region, timezone, ip, isp, error, loading } = useSelector(
     (state: RootState) => state.geo
   );
   const [hideSection, setHideSection] = useState(false);
@@ -58,7 +58,7 @@ const Parameters = () => {
             </li>
             <li>
               <h3>LOCATION</h3>
-              <p>{loading ? "..." : `${region}, ${city}`}</p>
+              <p>{loading ? "..." : region}</p>
             </li>
             <li>
               <h3>TIMEZONE</h3>

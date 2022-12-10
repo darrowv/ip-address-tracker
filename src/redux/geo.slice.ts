@@ -6,21 +6,21 @@ type GeoSliceState = {
   ip: String;
   isp: String;
   region: String;
-  city: String;
+  // city: String;
   timezone: String;
   loading: Boolean;
   error: Boolean;
 };
 
 type FetchedData = {
-  lat: Number;
-  lon: Number;
-  query: String;
-  isp: String;
-  regionName: String;
-  city: String;
-  timezone: String;
-  status?: String;
+  latitude: Number;
+  longitude: Number;
+  ip_address: String;
+  connection: { isp_name: String };
+  country: String;
+  // city: String;
+  timezone: { name: String };
+  success: String;
 };
 
 const initialState: GeoSliceState = {
@@ -29,40 +29,49 @@ const initialState: GeoSliceState = {
   ip: "",
   isp: "",
   region: "",
-  city: "",
+  // city: "",
   timezone: "",
   loading: false,
   error: false,
 };
 
+// Yes, I am not keeping my api key in secret (because it's free plan (and I don't have desire to attach backend for this)) 
 export const getGeolocation = createAsyncThunk<FetchedData, String>(
   "geo/get",
-  async (address) => {
+  async (address, thunkAPI) => {
     try {
       const res = await fetch(
-        `//ip-api.com/json/${address}?fields=status,message,regionName,city,lat,lon,timezone,isp,query`
+        `https://ipgeolocation.abstractapi.com/v1/?api_key=07585d0526cd4d68a6ca75f45bd7cb4f&ip_address=${address}`
       );
-      const data = await res.json();
 
-      return data;
+      if(res.ok) {
+        const data = await res.json();
+        return data;
+      }
 
-    } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue(res.status)
+
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
 );
 
 export const getInitialGeolocation = createAsyncThunk(
   "geo/getInitial",
-  async () => {
+  async (_, thunkAPI) => {
     try {
-      const res = await fetch("//ip-api.com/json");
-      const data = await res.json();
+      const res = await fetch("https://ipgeolocation.abstractapi.com/v1/?api_key=07585d0526cd4d68a6ca75f45bd7cb4f");
 
-      return data;
+      if(res.ok) {
+        const data = await res.json();
+        return data;
+      }
 
-    } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue(res.status)
+
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
 );
@@ -77,38 +86,34 @@ export const geoSlice = createSlice({
         state.loading = true;
       })
       .addCase(getGeolocation.fulfilled, (state, action) => {
-        if (action.payload.status === "fail") {
-          state.error = true;
-        } else {
           state.loading = false;
           state.error = false;
-          state.lat = action.payload?.lat;
-          state.lon = action.payload?.lon;
-          state.region = action.payload?.regionName;
-          state.city = action.payload?.city;
-          state.timezone = action.payload?.timezone;
-          state.ip = action.payload?.query;
-          state.isp = action.payload?.isp;
-        }
+          state.lat = action.payload?.latitude;
+          state.lon = action.payload?.longitude;
+          state.region = action.payload?.country;
+          state.timezone = action.payload?.timezone.name;
+          state.ip = action.payload?.ip_address;
+          state.isp = action.payload?.connection.isp_name;
+      })
+      .addCase(getGeolocation.rejected, (state, action) => {
+        state.error = true;
       })
       .addCase(getInitialGeolocation.pending, (state, action) => {
         state.loading = true;
       })
       .addCase(getInitialGeolocation.fulfilled, (state, action) => {
-        if (action.payload.status === "fail") {
-          state.error = true;
-        } else {
           state.loading = false;
           state.error = false;
-          state.lat = action.payload?.lat;
-          state.lon = action.payload?.lon;
-          state.region = action.payload?.regionName;
-          state.city = action.payload?.city;
-          state.timezone = action.payload?.timezone;
-          state.ip = action.payload?.query;
-          state.isp = action.payload?.isp;
-        }
-      });
+          state.lat = action.payload?.latitude;
+          state.lon = action.payload?.longitude;
+          state.region = action.payload?.country;
+          state.timezone = action.payload?.timezone.name;
+          state.ip = action.payload?.ip_address;
+          state.isp = action.payload?.connection.isp_name;
+      })
+      .addCase(getInitialGeolocation.rejected, (state, action) => {
+        state.error = true;
+      })
   },
 });
 
