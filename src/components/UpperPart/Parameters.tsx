@@ -40,7 +40,7 @@ const Parameters = () => {
     };
   }, [targetRef, options]);
 
-  const sub = (str: String) => str.substring(0, 20) + "...";
+  const sub = (str: string): string => str.substring(0, 20) + "...";
 
   return (
     <section
@@ -48,7 +48,9 @@ const Parameters = () => {
       ref={targetRef}
     >
       {error ? (
-        <h1>Incorrect data or problem with API, try again with correct IP address</h1>
+        <h1>
+          Incorrect data or problem with API, try again with correct IP address
+        </h1>
       ) : (
         <>
           <ul>

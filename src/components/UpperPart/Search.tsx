@@ -8,8 +8,8 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const dispatch: AppDispatch = useDispatch();
 
-  const setLocation = (e: any, address: String) => {
-    e.preventDefault();
+  const setLocation = (event: React.MouseEvent, address: string) => {
+    event.preventDefault();
     if(address) {
       dispatch(getGeolocation(address));
     }
@@ -26,7 +26,7 @@ const Search = () => {
           placeholder="Search for any IP address"
         />
         <button
-          onClick={(e) => setLocation(e, searchValue)}
+          onClick={(event) => setLocation(event, searchValue)}
           className="search-field__btn"
           type="submit"
         >
